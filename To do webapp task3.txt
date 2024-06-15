@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>to-do</title>
+<style>
+
+body{
+    height: 100vh;
+}
+
+ .background-image{
+    background-image: url(p.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+ }
+.container{
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    background-color: #e1e3ea;
+    border-radius: 10px;
+    min-width: 450px;
+    position: absolute;
+    min-height: 100px;
+    transform: translate(-50%,-50%);
+}
+#task_f{
+    position: relative;
+    padding: 30px 20px;
+}
+#task_f input{
+    width: 75%;
+    height: 45px;
+    padding: 12px;
+    color: #111111;
+    font-weight: 500;
+    position: relative;
+    border-radius: 5px;
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    border: 2px solid #d1d3d4;
+}
+
+#task_f input:focus{
+    outline: none;
+    border-color: #0d75ec;
+}
+#task_f button{
+    position: relative;
+    float: right;
+    font-weight: 500;
+    font-size: 15px;
+    border: none;
+    color: #fff;
+    background:linear-gradient(90deg,rgba(131,58,180,1)0%,rgba(253,29,29,1)50%,rgba(252,176,69,1)100%);
+    cursor: pointer;
+    outline: none;
+    width: 20%;
+    height: 45px;
+    border-radius: 5px;
+    font-family: 'Poppins',sans-serif;
+}
+
+#task_s{
+    border-radius: 10px;
+    width: 95%;
+    position: relative;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    margin-top: 10px;
+}
+.task{
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #939697;
+    cursor: pointer;
+    background-color: #c5e1e6;
+    height: 40px;
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    display: flex;
+}
+.task span{
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    font-weight: 40;
+}
+.task button{
+    background-color: #0a2ea4;
+    font-size: 0px
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    height: 50%;
+    width: 0px;
+    border-radius: 5px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="background-image">
+<div class="container">
+<div id="task_f">
+    <input type="text" placeholder="Add items...">
+    <button id="push">Add</button>
+
+<div id="task_s">
+</div>
+</div>
+</div>
+</div>
+<script>
+document.querySelector('#push').onclick = function(){
+    if(document.querySelector('#task_f input').value.length == 0){
+        alert("Please Enter a Task")
+    }
+
+    else{
+        document.querySelector('#task_s').innerHTML += `
+            <div class="task">
+                <span id="taskname">
+                    ${document.querySelector('#task_f input').value}
+                </span>
+                <button class="delete">Delete
+                </button>
+            </div>
+        `;
+
+        var current_tasks = document.querySelectorAll(".delete");
+        for(var i=0; i<current_tasks.length; i++){
+            current_tasks[i].onclick = function(){
+                this.parentNode.remove();
+            }
+        }
+    }
+}
+</script>
+</body>
+</html>
